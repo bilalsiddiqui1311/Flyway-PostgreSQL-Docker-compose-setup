@@ -37,36 +37,44 @@ This project provides a complete database solution for managing DevOps team skil
      - Database: `local-db`
 
 4. **Check migration status**
-   - **Flyway migration history**
-   SELECT * FROM flyway_schema_history ORDER BY installed_on DESC;
+  - **Flyway migration history**
+    ```sql
+    SELECT * FROM flyway_schema_history ORDER BY installed_on DESC;
+    ```
 
-   - **Detailed migration info**
-   SELECT 
-      installed_rank,
-      version,
-      description,
-      type,
-      script,
-      checksum,
-      installed_by,
-      installed_on,
-      execution_time,
-      success
-   FROM flyway_schema_history 
-   ORDER BY installed_on DESC;
+  - **Detailed migration info**
+    ```sql
+    SELECT 
+       installed_rank,
+       version,
+       description,
+       type,
+       script,
+       checksum,
+       installed_by,
+       installed_on,
+       execution_time,
+       success
+    FROM flyway_schema_history 
+    ORDER BY installed_on DESC;
+    ```
 
-   - **Check failed migrations**
-   SELECT * FROM flyway_schema_history WHERE success = false;
+  - **Check failed migrations**
+    ```sql
+    SELECT * FROM flyway_schema_history WHERE success = false;
+    ```
 
-   - **Check migration execution times**
-   SELECT 
-      version,
-      description,
-      execution_time,
-      installed_on
-   FROM flyway_schema_history 
-   ORDER BY execution_time DESC;
-
+  - **Check migration execution times**
+    ```sql
+    SELECT 
+       version,
+       description,
+       execution_time,
+       installed_on
+    FROM flyway_schema_history 
+    ORDER BY execution_time DESC;
+    ```
+    
 5. **Stop and cleanup**
    ```bash
    docker-compose down
